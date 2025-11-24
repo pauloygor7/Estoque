@@ -31,4 +31,26 @@ public class EstoqueServico {
         return new ResponseEntity<RespostaModelo>(rm, HttpStatus.OK);
     }
 
+    public ResponseEntity<?> cadastrarAlterar(ProdutoModelo pm, String acao){
+        if (pm.getNome().equals("")) {
+            rm.setMensagem("O nome do produto é obrigatório!");
+            return new ResponseEntity<RespostaModelo>(rm, HttpStatus.BAD_REQUEST);
+        } else if (pm.getModelo().equals("")) {
+            rm.setMensagem("O modelo do produto é obrigatório!");
+            return new ResponseEntity<RespostaModelo>(rm, HttpStatus.BAD_REQUEST);
+        } else if (pm.getDescricao().equals("")) {
+            rm.setMensagem("A descrição do produto é obrigatória!");
+            return new ResponseEntity<RespostaModelo>(rm, HttpStatus.BAD_REQUEST);
+        } else if (pm.getPreco() == null) {
+            rm.setMensagem("O preço do produto é obrigatório!");
+            return new ResponseEntity<RespostaModelo>(rm, HttpStatus.BAD_REQUEST);
+        }
+
+        if (acao.equals("cadastrar")) {
+            return new ResponseEntity<ProdutoModelo>(HttpStatus.CREATED);
+        } else{
+            return new ResponseEntity<ProdutoModelo>(er.save(pm), HttpStatus.OK);
+        }
+    }
+
 }

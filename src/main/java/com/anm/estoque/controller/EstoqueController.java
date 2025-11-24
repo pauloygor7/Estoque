@@ -34,4 +34,9 @@ public class EstoqueController {
     public ResponseEntity<RespostaModelo> deletarProduto(@PathVariable Long id) {
         return es.deletarProduto(id);
     }
+
+    @PostMapping("/cadastrar")
+    public ResponseEntity<?> cadastrarProduto(@RequestBody ProdutoModelo pm) {
+        return es.cadastrarAlterar(pm, "cadastrar");
+    }
 }

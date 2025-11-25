@@ -39,4 +39,9 @@ public class EstoqueController {
     public ResponseEntity<?> cadastrarProduto(@RequestBody ProdutoModelo pm) {
         return es.cadastrarAlterar(pm, "cadastrar");
     }
+
+    @PutMapping("/alterar")
+    public ResponseEntity<?> alterarProduto(@RequestBody ProdutoModelo pm) {
+        return es.cadastrarAlterar(pm, "alterar");
+    }
 }
